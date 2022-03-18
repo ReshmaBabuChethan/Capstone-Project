@@ -1,25 +1,42 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useFirestore } from '../../hooks/useFirestore'
+import { NavLink } from 'react-router-dom'
 
-export default function StudentForm() {
+export default function StudentForm( { uid } ) {
   const [name, setName] = useState('')
   const [nuid, setNuid] = useState('')
   const [course, setCourse] = useState('')
+  const [creditscomplete, setCreditscomplete] = useState('')
+  const { addDocument, response } = useFirestore('students')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({ 
+    addDocument({
+      uid,
       name, 
       nuid,
       course,
+      creditscomplete,
     })
   }
+
+  
+      // reset the form fields
+  useEffect(() => {
+    if (response.success) {
+      setName('')
+      setNuid('')
+      setCourse('')
+      setCreditscomplete('')
+    }
+  }, [response.success])
 
   return (
     <>
       <h3>Add your details</h3>
       <form onSubmit={handleSubmit}>
         <label>
-          <span>Student name:</span>
+          <span>Name:</span>
           <input 
             type="text"
             required
@@ -45,7 +62,16 @@ export default function StudentForm() {
             value={course} 
           />
         </label>
-              <button>Add Details</button>
+        <label>
+          <span>Credits completed:</span>
+          <input
+            type="number"
+            required
+            onChange={(e) => setCreditscomplete(e.target.value)} 
+            value={creditscomplete} 
+          />
+        </label>
+        <NavLink to="/listdisplay"> Add Details </NavLink>
       </form>
     </>
   )

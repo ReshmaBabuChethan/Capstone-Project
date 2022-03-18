@@ -6,6 +6,7 @@ import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Navbar from './components/Navbar'
+import ListDisplay from './pages/home/ListDisplay'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
@@ -28,6 +29,9 @@ function App() {
               {user && user.displayName && <Redirect to="/" />}
               {!user && <Signup />}
             </Route>
+            <Route path="/listdisplay">
+            <ListDisplay />
+          </Route>
           </Switch>
         </BrowserRouter>
       )}
