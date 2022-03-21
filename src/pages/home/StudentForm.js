@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory   } from 'react-router-dom'
+
+import ListDisplay from './ListDisplay'
 
 export default function StudentForm( { uid } ) {
   const [name, setName] = useState('')
@@ -8,6 +10,7 @@ export default function StudentForm( { uid } ) {
   const [course, setCourse] = useState('')
   const [creditscomplete, setCreditscomplete] = useState('')
   const { addDocument, response } = useFirestore('students')
+  let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -18,6 +21,7 @@ export default function StudentForm( { uid } ) {
       course,
       creditscomplete,
     })
+    history.push('/listdisplay');
   }
 
   
@@ -71,7 +75,9 @@ export default function StudentForm( { uid } ) {
             value={creditscomplete} 
           />
         </label>
-        <NavLink to="/listdisplay"> Add Details </NavLink>
+        <button> Add Details</button>
+        
+        
       </form>
     </>
   )
