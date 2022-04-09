@@ -11,7 +11,7 @@ import StudentForm from './StudentForm'
 export default function Home() {
   const { user } = useAuthContext()
   
-  return (
+ /* return (
     <div className={styles.container}>
       
       <div className={styles.sidebar}>
@@ -19,4 +19,15 @@ export default function Home() {
       </div>
     </div>
   )
+}*/
+
+return (
+  <div className={styles.container}>
+    
+    <div className={styles.sidebar}>
+   
+      <StudentForm uid={user.uid}/>
+    </div>
+  </div>
+)
 }

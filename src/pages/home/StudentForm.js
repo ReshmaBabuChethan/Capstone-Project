@@ -9,6 +9,9 @@ export default function StudentForm( { uid } ) {
   const [nuid, setNuid] = useState('')
   const [course, setCourse] = useState('')
   const [creditscomplete, setCreditscomplete] = useState('')
+  const [lastsem, setLastsem] = useState('')
+  const [optflag, setOptflag] = useState('')
+  const [optstartdate, setOptstartdate] = useState('')
   const { addDocument, response } = useFirestore('students')
   let history = useHistory();
 
@@ -20,6 +23,9 @@ export default function StudentForm( { uid } ) {
       nuid,
       course,
       creditscomplete,
+      lastsem,
+      optflag,
+      optstartdate,
     })
     history.push('/listdisplay');
   }
@@ -32,6 +38,10 @@ export default function StudentForm( { uid } ) {
       setNuid('')
       setCourse('')
       setCreditscomplete('')
+      setLastsem('')
+      setOptflag('')
+      setOptstartdate('')
+      
     }
   }, [response.success])
 
@@ -73,6 +83,33 @@ export default function StudentForm( { uid } ) {
             required
             onChange={(e) => setCreditscomplete(e.target.value)} 
             value={creditscomplete} 
+          />
+        </label>
+        <label>
+          <span>Is it the last semester:</span>
+          <input
+            type="boolean"
+            required
+            onChange={(e) => setLastsem(e.target.value)} 
+            value={lastsem} 
+          />
+        </label>
+        <label>
+          <span>Have you applied for OPT:</span>
+          <input
+            type="boolean"
+            required
+            onChange={(e) => setOptflag(e.target.value)} 
+            value={optflag} 
+          />
+        </label>
+        <label>
+          <span>OPT start date:</span>
+          <input
+            type="date"
+            required
+            onChange={(e) => setOptstartdate(e.target.value)} 
+            value={optstartdate} 
           />
         </label>
         <button> Add Details</button>
