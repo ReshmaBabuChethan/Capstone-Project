@@ -8,7 +8,9 @@ import styles from './Home.module.css'
 import StudentList from './StudentList'
 
 export default function ListDisplay() {
+  //debugger
   const { user } = useAuthContext()
+  
   const { documents, error } = useCollection(
     'students', ["uid", "==", user.uid], ['createdAt', 'desc']
   )

@@ -7,10 +7,16 @@ import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Navbar from './components/Navbar'
 import ListDisplay from './pages/home/ListDisplay'
+import AddStudent from './pages/home/AddStudent'
+import UpdateStudent from './pages/home/UpdateStudent'
+
+import { useCollection } from './hooks/useCollection'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
-
+  //  const { documents, error } = useCollection(
+    //'students', ["uid", "==", user.uid], ['createdAt', 'desc']
+ // )
   return (
     <div className="App">
       {authIsReady && (
@@ -20,6 +26,8 @@ function App() {
             <Route exact path="/">
               {!user && <Redirect to="/login" />}
               {user && <Home />}
+              {/*{user && !documents && <AddStudent/>}
+              {user && documents && <UpdateStudent/>}*/}
             </Route>
             <Route path="/login">
               {user && <Redirect to="/" />}
@@ -30,7 +38,9 @@ function App() {
               {!user && <Signup />}
             </Route>
             <Route path="/listdisplay">
-            <ListDisplay />
+            {user && user.displayName && <Redirect to="/listdisplay" />}
+              {!user && <Signup />}
+           
           </Route>
           </Switch>
         </BrowserRouter>
