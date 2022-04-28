@@ -35,22 +35,22 @@ export default function AddStudent( { uid } ) {
       optflag,
       optstartdate,
     })
-    history.push('/listdisplay');
+    // history.push('/listdisplay');
   }
 
   
       // reset the form fields
-  useEffect(() => {
-    if (response.success) {
-      setName('')
-      setNuid('')
-      setCourse('')
-      setCreditscomplete('')
-      setLastsem('')
-      setOptflag('')
-      setOptstartdate('')      
-    }
-  }, [response.success])
+  // useEffect(() => {
+  //   if (response.success) {
+  //     setName('')
+  //     setNuid('')
+  //     setCourse('')
+  //     setCreditscomplete('')
+  //     setLastsem('')
+  //     setOptflag('')
+  //     setOptstartdate('')      
+  //   }
+  // }, [response.success])
 
   return (
     <>
