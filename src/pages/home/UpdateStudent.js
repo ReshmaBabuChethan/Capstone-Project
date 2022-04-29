@@ -8,10 +8,10 @@ import {doc, getDoc} from "firebase/firestore";
 import ListDisplay from './ListDisplay'
 
 // export default function StudentForm( { uid } ) {
-export default function UpdateStudent({students}) {
+export default function UpdateStudent({student}) {
     const {user} = useAuthContext()
     const uid = user.uid
-    console.log("updatestudent " + students);
+    console.log("updatestudent " + student);
     const [name, setName] = useState('')
     const [nuid, setNuid] = useState('')
     const [course, setCourse] = useState('')
@@ -34,12 +34,12 @@ export default function UpdateStudent({students}) {
             optflag,
             optstartdate
         })
-        history.push('/listdisplay');
+       // history.push('/listdisplay');
     }
 
 
     // reset the form fields
-    useEffect(() => {
+   /*  useEffect(() => {
         if (response.success) {
             setName('')
             setNuid('')
@@ -50,13 +50,14 @@ export default function UpdateStudent({students}) {
             setOptstartdate('')
         }
     }, [response.success])
-
+ */
     return (
         <>
 
             <h3>Update your details</h3>
             {
-            students.map((student) => (
+            //students.map((student) => (
+              (() => (
                 <form onSubmit={handleSubmit}>
 
                     <label>

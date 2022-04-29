@@ -75,7 +75,7 @@ export const useFirestore = (collection) => {
   
       try {
         const createdAt = timestamp.fromDate(new Date())
-        const updatedDocument = await ref.update({ ...doc, createdAt })
+        const updatedDocument = await ref.update({ ...doc})
         dispatchIfNotCancelled({ type: 'UPDATED_DOCUMENT', payload: updatedDocument })
       }
       catch (err) {

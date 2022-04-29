@@ -40,8 +40,12 @@ function App() {
             <Route path="/listdisplay">
             {user && user.displayName && <Redirect to="/listdisplay" />}
               {!user && <Signup />}
-           
-          </Route>
+                     </Route>
+
+                     <Route path="/listdisplay">
+            {user && user.displayName && <Redirect to="/listdisplay" />}
+              {!user && <Signup />}
+                     </Route>
           </Switch>
         </BrowserRouter>
       )}

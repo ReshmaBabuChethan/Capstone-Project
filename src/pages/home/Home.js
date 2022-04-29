@@ -1,82 +1,81 @@
-import { useAuthContext } from '../../hooks/useAuthContext';
-
-import { useCollection } from '../../hooks/useCollection';
+import {useAuthContext} from '../../hooks/useAuthContext';
+import {useCollection} from '../../hooks/useCollection';
 
 
 // styles
-
 import styles from './Home.module.css';
 
 
 // components
-
 import AddStudent from './AddStudent';
-
 import StudentList from './StudentList';
 
 
 export default function Home() {
 
-  const { user } = useAuthContext();
+    const {user} = useAuthContext();
 
-  const { documents, error, isQuerying } = useCollection(
+    const {documents, error, isQuerying} = useCollection('students', [
+        'uid', '==', user.uid
+    ], ['createdAt', 'desc']);
 
-    'students',
+    // const flag=false;
+    // console.log("userid:"+user.uid);
+    // console.log("flag"+flag);
+    /* return (
 
-    ['uid', '==', user.uid],
-
-    ['createdAt', 'desc']
-
-  );
-
- // const flag=false;
-  //console.log("userid:"+user.uid);
-  //console.log("flag"+flag);
-
-  /* return (
-
-    <div className={styles.container}>
-
-      
-
+    <div className={styles.container}>    
       <div className={styles.sidebar}>
-
         <StudentForm uid={user.uid}/>
-
       </div>
-
     </div>
-
   )
-
 }*/
 
-console.log(documents);
-  return (
-    <>
-    {isQuerying && (
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <p>Loading...</p>
-        </div>
-      </div>
-    )}
-     {!isQuerying && (
-        <div className={styles.container}>
-          <div className={styles.content}>
-            {error && <p>{error}</p>}
-            {documents && <StudentList students={documents} />}
-          </div>
-          <div className={styles.sidebar}>
-            {!documents && <AddStudent uid={user.uid} />}
-          </div>
-        </div>
-      )}
-         </>
-  );
+    console.log(documents);
+    return (
+        <> {
+            isQuerying && (
+                <div className={
+                    styles.container
+                }>
+                    <div className={
+                        styles.content
+                    }>
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            )
+        }
+            {
+            !isQuerying && (
+                <div className={
+                    styles.container
+                }>
+                    <div className={
+                        styles.content
+                    }>
+                        {
+                        error && <p>{error}</p>
+                    }
+                        {
+                        documents && <StudentList students={documents}/>
+                    } </div>
+                    <div className={
+                        styles.sidebar
+                    }>
+                        {
+                        !documents && <AddStudent uid={
+                            user.uid
+                        }/>
+                    } </div>
+                </div>
+            )
+        } </>
+    );
 }
 
-    {/*<div className={styles.container}>
+{ /*<div className={styles.container}>
 
       {error && <p>{error}</p>}
 
@@ -88,9 +87,8 @@ console.log(documents);
 
         </div>
 
-      )}*/}
-
-{/*
+      )}*/
+} { /*
         if(documents){
           <StudentList students={documents} />}
           else{
@@ -105,8 +103,8 @@ console.log(documents);
 
         </div>
 
-     )}*/}
-    {/*} {(() => {
+     )}*/
+} { /*} {(() => {
      if (user.uid==="IQmop82X6gcSfNIR4dEoCdqlSLV2"){
        flag=true}
        
@@ -124,4 +122,5 @@ console.log(documents);
 
   );
 
-}*/}
+}*/
+}

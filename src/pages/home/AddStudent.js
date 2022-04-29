@@ -88,6 +88,7 @@ export default function AddStudent( { uid } ) {
           <select onChange={(e) => setCourse(e.target.value)}>
             <option value="CS">CS</option>
             <option value="MIS">MIS</option>
+            value={course} 
           </select>
         </label>
         <label>        
@@ -101,17 +102,19 @@ export default function AddStudent( { uid } ) {
         </label>
         <label>
           <span>Is it the last semester:</span>
-          <select onChange={(e) => setCourse(e.target.value)}>
+          <select onChange={(e) => setLastsem(e.target.value)}>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
+            value={lastsem} 
             </select>
         </label>
        
         <label>
           <span>Have you applied for OPT:</span>
-          <select onChange={(e) => setCourse(e.target.value)}>
+          <select onChange={(e) => setOptflag(e.target.value)}>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
+            value={optflag} 
             </select>
           </label>
         <label>
