@@ -12,13 +12,14 @@ export default function AddStudent( { uid } ) {
  // export default function AddStudent( { students } ) {
   const { user } = useAuthContext() 
   //const uid=user.uid
-  
+  const [email, setEmail] = useState(user.email)
+  console.log("user email:"+email)
   const [name, setName] = useState('')
   const [nuid, setNuid] = useState('')
   const [course, setCourse] = useState('CS')
   const [creditscomplete, setCreditscomplete] = useState('')
-  const [lastsem, setLastsem] = useState('')
-  const [optflag, setOptflag] = useState('')
+  const [lastsem, setLastsem] = useState('Yes')
+  const [optflag, setOptflag] = useState('Yes')
   const [optstartdate, setOptstartdate] = useState('')
   const { addDocument, response } = useFirestore('students')
   let history = useHistory();
@@ -28,6 +29,7 @@ export default function AddStudent( { uid } ) {
     addDocument({
       uid,
       name, 
+      email,
       nuid,
       course,
       creditscomplete,
@@ -111,17 +113,16 @@ export default function AddStudent( { uid } ) {
        
         <label>
           <span>Have you applied for OPT:</span>
-          <select onChange={(e) => setOptflag(e.target.value)}>
+          <select onChange={(e) => setOptflag(e.target.value)}>           
             <option value="Yes">Yes</option>
             <option value="No">No</option>
-            value={optflag} 
+            value={optflag}             
             </select>
           </label>
         <label>
           <span>OPT start date:</span>
           <input
             type="date"
-            required
             onChange={(e) => setOptstartdate(e.target.value)} 
             value={optstartdate} 
           />

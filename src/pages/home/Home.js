@@ -14,6 +14,8 @@ import StudentList from './StudentList';
 export default function Home() {
 
     const {user} = useAuthContext();
+  
+  console.log("user details: " +user.email)
 
     const {documents, error, isQuerying} = useCollection('students', [
         'uid', '==', user.uid

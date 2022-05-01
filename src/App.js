@@ -7,6 +7,7 @@ import Login from './pages/login/Login'
 import Signup from './pages/signup/Signup'
 import Navbar from './components/Navbar'
 import ListDisplay from './pages/home/ListDisplay'
+import OtherLink from './pages/home/OtherLink'
 import AddStudent from './pages/home/AddStudent'
 import UpdateStudent from './pages/home/UpdateStudent'
 
@@ -42,8 +43,8 @@ function App() {
               {!user && <Signup />}
                      </Route>
 
-                     <Route path="/listdisplay">
-            {user && user.displayName && <Redirect to="/listdisplay" />}
+                     <Route path="/OtherLink">
+            {user && user.displayName && <Redirect to="/OtherLink" />}
               {!user && <Signup />}
                      </Route>
           </Switch>

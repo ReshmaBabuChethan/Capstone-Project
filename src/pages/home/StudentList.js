@@ -3,14 +3,14 @@ import {useFirestore} from '../../hooks/useFirestore'
 
 // styles
 import styles from './Home.module.css'
-import UpdateStudent from './UpdateStudent';
+import UpdateStudent from './OtherLink';
 import {useAuthContext} from '../../hooks/useAuthContext'
 
 
 import ModifyPage from './ModifyPage';
 
 // components
-import CommStudent from './bkpCommStudent'
+import OtherLink from './OtherLink'
 
 export default function StudentList({students}) {
     const {deleteDocument} = useFirestore('students')
@@ -77,10 +77,15 @@ export default function StudentList({students}) {
         setUpdateForm(false);
     }
 
+    //const otherlnk=false;
+    const [otherlnk, setotherlnk] = useState(false)
+    const handleOtherlnk = () =>  {
+        setotherlnk(true);
+    }
 
     return (
-        <> {
-            !updateForm && (
+        <> 
+       { !updateForm && (
                 <div>
                     <ul className={
                         styles.students
@@ -203,9 +208,9 @@ export default function StudentList({students}) {
 
                         ))
                     } </ul>
-                    <button onClick={
-                        () => updateDetails(stu)
-                    }>Update My Details</button>
+                    <button onClick={ () => updateDetails(stu)}>Update My Details</button>
+
+                 <button onClick={() => handleOtherlnk }>Visit here for other links</button>
 
                     {/* <button onClick={() => ModifyPage(students)}>Update Details</button>*/} </div>
             )
@@ -312,6 +317,30 @@ export default function StudentList({students}) {
                         () => updateDocument(stu)
                     }>Update Details</button> */} </form>
             )
-        } </>
+        } 
+
+
+{otherlnk && (
+    <div>
+     <h3> Got to raise I20 requests? Please find the iGlobal link below </h3>
+        <div>
+          <a href="https://iglobal.nebraska.edu/">iGlobal</a> 
+        </div>
+        <div>
+          <h3> International Student advisor details:</h3>
+          <h4> Jennifer</h4>
+          <h4>jennifer@unomaha.edu</h4>
+          <h4>123-456-7899</h4>
+        </div>
+        <div>
+          <h4> Michelle</h4>
+          <h4>michelle@unomaha.edu</h4>
+          <h4>123-456-7899</h4>
+        </div>
+    </div>
+)}
+           
+      
+      </>
     )
 }
