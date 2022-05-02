@@ -6,10 +6,7 @@ const cors = require('cors');
 const corsHandler = cors({origin: true});
 
 const {
-    gmail: {
-        password,
-        sender
-    }
+    gmail: {  password,sender }
 } = config();
 
 const transporter = createTransport({
@@ -28,7 +25,7 @@ const mailOptions = ({subject, name, message, recipient}) => {
     `;
 
     const html = `
-    <h1>Name: ${name}</h1>
+    <h3>Hello ${name}</h3>
     <p>Message: ${message}</p>
     `;
 
